@@ -1,0 +1,22 @@
+version: '3.9'
+
+# Below I define the two services I need for my app:
+# - a postgres (database) service to store data into
+# - a jupyterlab service: un work environment where I'll be using python and 
+# - SQL to Build ETL pipeline and interact with postgres
+services:
+  jlab: # this is the name of jupyter lab service
+    # this container will be built based on the dockerfile
+    # in the current directory '.'
+    build: .
+    container_name: jupyter_container
+    # when this container is running the command below will be executed
+    # --no-browser: don't try to open the browser automatically
+    # --ip=0.0.0.0: accept request from any ip
+    # --allow-root: allow root user (the default user in the container) 
+    # to launch jupyterlab
+    command: jupyter lab --no-browser --ip=0.0.0.0 --allow-root
+    ports:
+      - '8888:8888'
+    volumes:
+      - ./notebook:/dwhuser

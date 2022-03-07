@@ -1,0 +1,6 @@
+psycopg2-binary
+jupyterlab
+ipython-sql
+pandas
+boto3
+s3fs
